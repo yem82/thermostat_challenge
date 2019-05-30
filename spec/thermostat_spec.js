@@ -36,7 +36,46 @@ describe('Thermostat', function(){
       }
       expect(thermostat.getCurrentTemperature()).toEqual(10);
     });
+
+    it('can reset to default temperature', function(){
+      thermostat.up()
+      thermostat.reset();
+
+      expect(thermostat.temperature).toEqual(20)
+    })
   });
+
+  // describe('energy usage', function(){
+  //   beforeEach(function(){
+  //     thermostat.temperature = 10
+  //   });
+
+  //   it('gets low energy usage when temp < 18 deg', function(){
+
+  //     for (i = 0; i < 7; i++) {
+  //       thermostat.up();
+  //     }
+
+  //     expect(thermostat.energy_usage).toEqual('Low usage')
+  //   })
+
+  //   it('gets medium energy usage when temp < 25 deg', function(){
+  //     for (i = 0; i < 14; i++) {
+  //       thermostat.up();
+  //     }
+
+  //     expect(thermostat.energy_usage).toEqual('Medium usage')
+  //   })
+
+  //   it('gets high energy usage when temp >= 25 deg', function(){
+  //     for (i = 0; i < 15; i++) {
+  //       thermostat.up();
+  //     }
+
+  //     expect(thermostat.energy_usage).toEqual('High usage')
+  //   })
+  // });
+
 
   describe('power saving', function(){
 
@@ -55,6 +94,20 @@ describe('Thermostat', function(){
         thermostat.up();
       }
       expect(thermostat.getCurrentTemperature()).toEqual(32)
+    });
+
+    it('can switch power saving off', function(){
+      thermostat.switchPowerSavingOff();
+
+      expect(thermostat.isPowerSavingOn()).toBe(false)
+    });
+
+    it('can switch power saving on', function(){
+      thermostat.switchPowerSavingOff();
+      expect(thermostat.isPowerSavingOn()).toBe(false)
+
+      thermostat.switchPowerSavingOn();
+      expect(thermostat.isPowerSavingOn()).toBe(true)
     });
   })
 });
