@@ -9,7 +9,7 @@ describe('Thermostat', function(){
 
   describe('at initialization', function(){
 
-    it('has a defaultt temperature of 20 degs', function(){
+    it('has a default temperature of 20 degs', function(){
       expect(thermostat.temperature).toEqual(20)
     });
 
@@ -45,36 +45,34 @@ describe('Thermostat', function(){
     })
   });
 
-  // describe('energy usage', function(){
-  //   beforeEach(function(){
-  //     thermostat.temperature = 10
-  //   });
-
-  //   it('gets low energy usage when temp < 18 deg', function(){
-
-  //     for (i = 0; i < 7; i++) {
-  //       thermostat.up();
-  //     }
-
-  //     expect(thermostat.energy_usage).toEqual('Low usage')
-  //   })
-
-  //   it('gets medium energy usage when temp < 25 deg', function(){
-  //     for (i = 0; i < 14; i++) {
-  //       thermostat.up();
-  //     }
-
-  //     expect(thermostat.energy_usage).toEqual('Medium usage')
-  //   })
-
-  //   it('gets high energy usage when temp >= 25 deg', function(){
-  //     for (i = 0; i < 15; i++) {
-  //       thermostat.up();
-  //     }
-
-  //     expect(thermostat.energy_usage).toEqual('High usage')
-  //   })
-  // });
+  describe('displaying usage levels', function() {
+    beforeEach(function(){
+      thermostat = new Thermostat();
+    });
+    // describe('when the temp is < 18 degrees', function() {
+      it('it is considered low-usage', function() {
+        for (var i = 0; i < 3; i++) {
+          thermostat.down();
+        }
+        expect(thermostat.energyUsage()).toEqual('low usage');
+      });
+    // });
+  
+    // describe('when the temperature is between 18 and 25 degrees', function() {
+      it('it is considered medium-usage', function() {
+        expect(thermostat.energyUsage()).toEqual('medium usage');
+      });
+  
+    // describe('when the temperature is anything else', function() {
+      it('it is considered high-usage', function() {
+        thermostat.switchPowerSavingOff;
+        for (var i = 0; i < 6; i++) {
+          thermostat.up();
+        }
+        expect(thermostat.energyUsage()).toEqual('high usage');
+      });
+    // });
+    });
 
 
   describe('power saving', function(){
